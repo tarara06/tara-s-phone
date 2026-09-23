@@ -411,6 +411,60 @@ function closeBooks() {
 
 function openGame() {
 
+    document.getElementById("homeScreen").style.display = "none";
+
+    document.body.insertAdjacentHTML("beforeend", `
+        <div class="game-screen" id="gameScreen">
+
+            <div class="game-top">
+                <button class="back-button" onclick="closeGame()">← BACK</button>
+
+                <div class="game-title">
+                    ✦ CATCH THE STARS ✦
+                </div>
+
+                <div class="game-score">
+                    SCORE: <span id="score">0</span>
+                </div>
+            </div>
+
+            <div class="game-instructions">
+                TAP THE ⭐ BEFORE IT DISAPPEARS!
+            </div>
+
+            <div class="game-area" id="gameArea">
+
+                <div class="start-message" id="startMessage">
+                    <div>⭐</div>
+                    <p>READY?</p>
+
+                    <button class="start-button" onclick="startGame()">
+                        START GAME
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="game-bottom">
+
+                <div>
+                    TIME:
+                    <span id="gameTime">30</span>
+                </div>
+
+                <div>
+                    HIGH SCORE:
+                    <span id="highScore">0</span>
+                </div>
+
+            </div>
+
+        </div>
+    `);
+
+    loadHighScore();
+}
+
     /* =========================
    CATCH THE STARS GAME
 ========================= */
