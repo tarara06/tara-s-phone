@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Tara's Phone</title>
 
@@ -13,17 +14,18 @@
 
 <body>
 
-    <div class="phone">
+    <!-- =========================
+         LOCK SCREEN
+    ========================== -->
 
-        <!-- TIME -->
-        <div class="time" id="time">
+    <div class="phone" id="lockScreen">
+
+        <div class="time" id="lockTime">
             12:00 PM
         </div>
 
-        <!-- PHONE TITLE -->
         <h1>TARA'S PHONE</h1>
 
-        <!-- PASSCODE DOTS -->
         <div class="dots">
             <span></span>
             <span></span>
@@ -31,12 +33,10 @@
             <span></span>
         </div>
 
-        <!-- MESSAGE -->
         <div class="message">
             ENTER PASSCODE
         </div>
 
-        <!-- KEYPAD -->
         <div class="keypad">
 
             <button onclick="press(1)">1</button>
@@ -51,13 +51,190 @@
             <button onclick="press(8)">8</button>
             <button onclick="press(9)">9</button>
 
-            <button class="clear" onclick="clearCode()">C</button>
+            <button class="blue-button" onclick="clearCode()">C</button>
             <button onclick="press(0)">0</button>
-            <button class="ok" onclick="checkCode()">OK</button>
+            <button class="blue-button" onclick="checkCode()">OK</button>
 
         </div>
 
     </div>
+
+
+    <!-- =========================
+         STARGIRL HOME SCREEN
+    ========================== -->
+
+    <div class="home-screen" id="homeScreen">
+
+        <!-- TOP BAR -->
+
+        <div class="home-top">
+
+            <div id="homeTime">
+                12:45 PM
+            </div>
+
+            <div class="battery">
+                ♡ 100%
+            </div>
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <div class="star-title">
+            ✦ STARGIRL ✦
+        </div>
+
+
+        <!-- MAIN APPS -->
+
+        <div class="app-grid">
+
+            <!-- MESSAGES -->
+
+            <button class="app-card mint"
+                onclick="openMessages()">
+
+                <div class="app-icon">💌</div>
+
+                <div class="app-name">
+                    MESSAGES
+                </div>
+
+            </button>
+
+
+            <!-- PINTEREST -->
+
+            <button class="app-card pink"
+                onclick="openPinterest()">
+
+                <div class="app-icon">📌</div>
+
+                <div class="app-name">
+                    PINTEREST
+                </div>
+
+            </button>
+
+
+            <!-- MUSIC -->
+
+            <button class="app-card lavender"
+                onclick="openMusic()">
+
+                <div class="app-icon">🎵</div>
+
+                <div class="app-name">
+                    MUSIC
+                </div>
+
+            </button>
+
+
+            <!-- NOTES -->
+
+            <button class="app-card blue"
+                onclick="openNotes()">
+
+                <div class="app-icon">📝</div>
+
+                <div class="app-name">
+                    NOTES
+                </div>
+
+            </button>
+
+        </div>
+
+
+        <!-- DAILY WISDOM -->
+
+        <div class="wisdom-title">
+            ✨ DAILY WISDOM ✨
+        </div>
+
+        <div class="wisdom-card">
+
+            <span id="dailyWisdom">
+                "A little reminder: you are doing better than you think."
+            </span>
+
+        </div>
+
+
+        <!-- SECOND ROW -->
+
+        <div class="app-grid lower-grid">
+
+            <!-- BOOKS -->
+
+            <button class="app-card yellow"
+                onclick="openBooks()">
+
+                <div class="app-icon">📚</div>
+
+                <div class="app-name">
+                    BOOKS
+                </div>
+
+            </button>
+
+
+            <!-- MINI GAME -->
+
+            <button class="app-card purple"
+                onclick="openGame()">
+
+                <div class="app-icon">🎮</div>
+
+                <div class="app-name">
+                    MINI GAME
+                </div>
+
+            </button>
+
+
+            <!-- JOURNAL -->
+
+            <button class="app-card pink"
+                onclick="openJournal()">
+
+                <div class="app-icon">📔</div>
+
+                <div class="app-name">
+                    JOURNAL
+                </div>
+
+            </button>
+
+
+            <!-- COFFEE -->
+
+            <button class="app-card coffee"
+                onclick="openCoffee()">
+
+                <div class="app-icon">☕</div>
+
+                <div class="app-name">
+                    COFFEE
+                </div>
+
+            </button>
+
+        </div>
+
+
+        <!-- BOTTOM DECORATION -->
+
+        <div class="bottom-line">
+            ━━━━━━━━━
+        </div>
+
+    </div>
+
 
     <script src="script.js"></script>
 
