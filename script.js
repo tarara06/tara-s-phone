@@ -8,7 +8,6 @@ function press(number) {
     }
 
     enteredCode += number;
-
     updateDots();
 }
 
@@ -30,17 +29,49 @@ function clearCode() {
 }
 
 function checkCode() {
-
     if (enteredCode === correctCode) {
-
-        alert("ACCESS GRANTED!");
-
-        // We'll replace this with your actual phone screen later.
-
+        showHomeScreen();
     } else {
-
         alert("WRONG PASSCODE");
-
         clearCode();
     }
+}
+
+function showHomeScreen() {
+
+    document.body.innerHTML = `
+        <div class="home-screen">
+
+            <div class="home-time">
+                12:00 PM
+            </div>
+
+            <h1>STARGIRL</h1>
+
+            <div class="apps">
+
+                <button onclick="openMessages()">
+                    💬
+                    <span>MESSAGES</span>
+                </button>
+
+                <button onclick="openPinterest()">
+                    📌
+                    <span>PINTEREST</span>
+                </button>
+
+                <button onclick="openNotes()">
+                    📝
+                    <span>NOTES</span>
+                </button>
+
+                <button onclick="openMusic()">
+                    🎵
+                    <span>MUSIC</span>
+                </button>
+
+            </div>
+
+        </div>
+    `;
 }
