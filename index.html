@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tara's Phone</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="phone">
+
+        <!-- TIME -->
+        <div class="time" id="time">
+            12:00 PM
+        </div>
+
+        <!-- PHONE TITLE -->
+        <h1>TARA'S PHONE</h1>
+
+        <!-- PASSCODE DOTS -->
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- MESSAGE -->
+        <div class="message">
+            ENTER PASSCODE (0410)
+        </div>
+
+        <!-- KEYPAD -->
+        <div class="keypad">
+
+            <button onclick="press(1)">1</button>
+            <button onclick="press(2)">2</button>
+            <button onclick="press(3)">3</button>
+
+            <button onclick="press(4)">4</button>
+            <button onclick="press(5)">5</button>
+            <button onclick="press(6)">6</button>
+
+            <button onclick="press(7)">7</button>
+            <button onclick="press(8)">8</button>
+            <button onclick="press(9)">9</button>
+
+            <button class="clear" onclick="clearCode()">C</button>
+            <button onclick="press(0)">0</button>
+            <button class="ok" onclick="checkCode()">OK</button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
