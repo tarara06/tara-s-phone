@@ -186,19 +186,404 @@ function openNotes() {
 }
 
 
-/* BOOKS */
+/* =========================
+   BOOKS
+========================= */
 
 function openBooks() {
 
-    alert("📚 BOOKS\n\nYour bookshelf is coming soon!");
+    document.getElementById("homeScreen").style.display = "none";
+
+    document.body.insertAdjacentHTML("beforeend", `
+
+        <div class="books-screen" id="booksScreen">
+
+            <button class="books-back" onclick="closeBooks()">
+                ← BACK
+            </button>
+
+            <div class="books-title">
+                ✦ BOOKS ✦
+            </div>
+
+            <div class="books-grid">
+
+                <button class="book-category english"
+                    onclick="openEnglishBooks()">
+
+                    <div class="book-icon">📗</div>
+                    <div>ENGLISH BOOKS</div>
+
+                </button>
+
+
+                <button class="book-category urdu"
+                    onclick="openUrduBooks()">
+
+                    <div class="book-icon">📕</div>
+                    <div>URDU BOOKS</div>
+
+                </button>
+
+
+                <button class="book-category wattpad"
+                    onclick="openWattpadBooks()">
+
+                    <div class="book-icon">📙</div>
+                    <div>WATTPAD</div>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `);
 }
+
+
+/* ENGLISH BOOKS */
+
+function openEnglishBooks() {
+
+    showBookList(
+        "ENGLISH BOOKS",
+        [
+            "God of War",
+            "Royal Elite Series",
+            "I Hope This Doesn't Find You",
+            "The Sweetest Oblivion",
+            "Nocticadia"
+        ]
+    );
+
+}
+
+
+/* URDU BOOKS */
+
+function openUrduBooks() {
+
+    showBookList(
+        "URDU BOOKS",
+        [
+            "Peer-e-Kamil",
+            "Aab-e-Hayat",
+            "Carpe Diem",
+            "Usri Yusra"
+        ]
+    );
+
+}
+
+
+/* WATTPAD */
+
+function openWattpadBooks() {
+
+    showBookList(
+        "WATTPAD",
+        [
+            "Entangled Vows",
+            "Whispers of Eternity"
+        ]
+    );
+
+}
+
+
+/* BOOK LIST */
+
+function showBookList(title, books) {
+
+    const booksScreen =
+        document.getElementById("booksScreen");
+
+    booksScreen.innerHTML = `
+
+        <button class="books-back"
+            onclick="showBookCategories()">
+
+            ← BACK
+
+        </button>
+
+        <div class="books-title">
+            ✦ ${title} ✦
+        </div>
+
+        <div class="book-list">
+
+            ${books.map((book, index) => `
+
+                <button class="individual-book">
+
+                    <span class="book-number">
+                        ${String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span>
+                        ${book}
+                    </span>
+
+                </button>
+
+            `).join("")}
+
+        </div>
+
+    `;
+}
+
+
+/* BACK TO CATEGORIES */
+
+function showBookCategories() {
+
+    const booksScreen =
+        document.getElementById("booksScreen");
+
+    booksScreen.innerHTML = `
+
+        <button class="books-back"
+            onclick="closeBooks()">
+
+            ← BACK
+
+        </button>
+
+        <div class="books-title">
+            ✦ BOOKS ✦
+        </div>
+
+        <div class="books-grid">
+
+            <button class="book-category english"
+                onclick="openEnglishBooks()">
+
+                <div class="book-icon">📗</div>
+                <div>ENGLISH BOOKS</div>
+
+            </button>
+
+
+            <button class="book-category urdu"
+                onclick="openUrduBooks()">
+
+                <div class="book-icon">📕</div>
+                <div>URDU BOOKS</div>
+
+            </button>
+
+
+            <button class="book-category wattpad"
+                onclick="openWattpadBooks()">
+
+                <div class="book-icon">📙</div>
+                <div>WATTPAD</div>
+
+            </button>
+
+        </div>
+
+    `;
+}
+
+
+/* CLOSE BOOKS */
+
+function closeBooks() {
+
+    const booksScreen =
+        document.getElementById("booksScreen");
+
+    if (booksScreen) {
+        booksScreen.remove();
+    }
+
+    document.getElementById("homeScreen").style.display =
+        "block";
+}
+
 
 
 /* MINI GAME */
 
 function openGame() {
 
-    alert("🎮 MINI GAME\n\nYour little game is coming soon!");
+    /* =========================
+   CATCH THE STARS GAME
+========================= */
+
+let gameScore = 0;
+let gameTime = 30;
+let gameTimer;
+let starTimer;
+let highScore = 0;
+
+
+function loadHighScore() {
+
+    highScore =
+        Number(localStorage.getItem("stargirlHighScore")) || 0;
+
+    document.getElementById("highScore").textContent =
+        highScore;
+}
+
+
+function startGame() {
+
+    gameScore = 0;
+    gameTime = 30;
+
+    document.getElementById("score").textContent = "0";
+    document.getElementById("gameTime").textContent = "30";
+
+    document.getElementById("startMessage").style.display = "none";
+
+    clearInterval(gameTimer);
+    clearInterval(starTimer);
+
+    spawnStar();
+
+    starTimer = setInterval(spawnStar, 900);
+
+    gameTimer = setInterval(() => {
+
+        gameTime--;
+
+        document.getElementById("gameTime").textContent =
+            gameTime;
+
+        if (gameTime <= 0) {
+
+            endGame();
+
+        }
+
+    }, 1000);
+}
+
+
+function spawnStar() {
+
+    const gameArea =
+        document.getElementById("gameArea");
+
+    if (!gameArea) return;
+
+    const oldStar =
+        document.querySelector(".falling-star");
+
+    if (oldStar) {
+        oldStar.remove();
+    }
+
+    const star =
+        document.createElement("button");
+
+    star.className = "falling-star";
+
+    star.textContent = "⭐";
+
+    const maxX =
+        gameArea.clientWidth - 60;
+
+    const maxY =
+        gameArea.clientHeight - 60;
+
+    star.style.left =
+        Math.random() * maxX + "px";
+
+    star.style.top =
+        Math.random() * maxY + "px";
+
+
+    star.onclick = function () {
+
+        gameScore++;
+
+        document.getElementById("score").textContent =
+            gameScore;
+
+        star.remove();
+
+        spawnStar();
+    };
+
+
+    gameArea.appendChild(star);
+}
+
+
+function endGame() {
+
+    clearInterval(gameTimer);
+    clearInterval(starTimer);
+
+    const star =
+        document.querySelector(".falling-star");
+
+    if (star) {
+        star.remove();
+    }
+
+    if (gameScore > highScore) {
+
+        highScore = gameScore;
+
+        localStorage.setItem(
+            "stargirlHighScore",
+            highScore
+        );
+    }
+
+    document.getElementById("highScore").textContent =
+        highScore;
+
+    document.getElementById("gameArea").innerHTML = `
+
+        <div class="game-over">
+
+            <div class="big-star">⭐</div>
+
+            <h2>TIME'S UP!</h2>
+
+            <p>YOUR SCORE</p>
+
+            <div class="final-score">
+                ${gameScore}
+            </div>
+
+            <p>HIGH SCORE: ${highScore}</p>
+
+            <button class="start-button"
+                onclick="startGame()">
+                PLAY AGAIN
+            </button>
+
+        </div>
+
+    `;
+}
+
+
+function closeGame() {
+
+    clearInterval(gameTimer);
+    clearInterval(starTimer);
+
+    const game =
+        document.getElementById("gameScreen");
+
+    if (game) {
+        game.remove();
+    }
+
+    document.getElementById("homeScreen").style.display =
+        "block";
+}
 }
 
 
