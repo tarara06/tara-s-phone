@@ -1,0 +1,354 @@
+/* =========================
+   MINI GAME
+========================= */
+
+.game-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background: #07183d;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 25px 15px;
+
+    overflow-y: auto;
+
+    font-family: 'Press Start 2P', monospace;
+}
+
+
+/* TOP */
+
+.game-top {
+
+    width: min(92vw, 650px);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+    color: white;
+}
+
+
+.game-title {
+
+    font-size: 14px;
+
+    text-align: center;
+
+    color: white;
+
+    line-height: 1.6;
+}
+
+
+.game-score {
+
+    font-size: 9px;
+
+    white-space: nowrap;
+}
+
+
+/* BACK */
+
+.back-button {
+
+    background: #4657b8;
+
+    color: white;
+
+    border: 5px solid black;
+
+    box-shadow: 5px 5px 0 black;
+
+    padding: 12px 10px;
+
+    font-family: 'Press Start 2P', monospace;
+
+    font-size: 8px;
+
+    cursor: pointer;
+}
+
+.back-button:active {
+
+    transform: translate(4px, 4px);
+
+    box-shadow: 2px 2px 0 black;
+}
+
+
+/* INSTRUCTIONS */
+
+.game-instructions {
+
+    width: min(92vw, 650px);
+
+    background: white;
+
+    border: 5px solid black;
+
+    box-shadow: 6px 6px 0 black;
+
+    padding: 16px;
+
+    text-align: center;
+
+    font-size: 9px;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+}
+
+
+/* GAME AREA */
+
+.game-area {
+
+    position: relative;
+
+    width: min(92vw, 650px);
+
+    height: 430px;
+
+    background: #ffffff;
+
+    border: 7px solid black;
+
+    box-shadow: 8px 8px 0 black;
+
+    overflow: hidden;
+}
+
+
+/* STAR */
+
+.falling-star {
+
+    position: absolute;
+
+    width: 55px;
+
+    height: 55px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    font-size: 35px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    animation: starPop 0.15s ease-out;
+}
+
+
+@keyframes starPop {
+
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+
+}
+
+
+/* START / GAME OVER */
+
+.start-message,
+.game-over {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    gap: 12px;
+}
+
+
+.start-message > div,
+.big-star {
+
+    font-size: 55px;
+}
+
+
+.start-message p,
+.game-over p {
+
+    font-size: 10px;
+
+    line-height: 1.8;
+}
+
+
+.game-over h2 {
+
+    font-size: 15px;
+
+    margin: 5px;
+}
+
+
+.final-score {
+
+    font-size: 35px;
+
+    color: #4657b8;
+}
+
+
+/* START BUTTON */
+
+.start-button {
+
+    background: #d2f1dc;
+
+    border: 6px solid black;
+
+    box-shadow: 7px 7px 0 black;
+
+    padding: 18px;
+
+    font-family: 'Press Start 2P', monospace;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    margin-top: 10px;
+}
+
+
+.start-button:active {
+
+    transform: translate(5px, 5px);
+
+    box-shadow: 2px 2px 0 black;
+}
+
+
+/* BOTTOM */
+
+.game-bottom {
+
+    width: min(92vw, 650px);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 25px;
+
+    color: white;
+
+    font-size: 9px;
+
+    line-height: 2;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .game-screen {
+
+        padding: 18px 10px;
+    }
+
+    .game-top {
+
+        width: 94vw;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .game-title {
+
+        order: -1;
+
+        width: 100%;
+
+        font-size: 12px;
+    }
+
+    .game-score {
+
+        font-size: 8px;
+    }
+
+    .back-button {
+
+        font-size: 7px;
+
+        padding: 10px;
+    }
+
+    .game-instructions {
+
+        width: 94vw;
+
+        font-size: 7px;
+
+        padding: 13px;
+    }
+
+    .game-area {
+
+        width: 94vw;
+
+        height: 420px;
+
+        border-width: 5px;
+    }
+
+    .game-bottom {
+
+        width: 94vw;
+
+        font-size: 7px;
+    }
+
+}
