@@ -1,0 +1,173 @@
+/* =========================
+   CATCH THE STARS GAME
+========================= */
+
+let gameScore = 0;
+let gameTime = 30;
+let gameTimer;
+let starTimer;
+let highScore = 0;
+
+
+function loadHighScore() {
+
+    highScore =
+        Number(localStorage.getItem("stargirlHighScore")) || 0;
+
+    document.getElementById("highScore").textContent =
+        highScore;
+}
+
+
+function startGame() {
+
+    gameScore = 0;
+    gameTime = 30;
+
+    document.getElementById("score").textContent = "0";
+    document.getElementById("gameTime").textContent = "30";
+
+    document.getElementById("startMessage").style.display = "none";
+
+    clearInterval(gameTimer);
+    clearInterval(starTimer);
+
+    spawnStar();
+
+    starTimer = setInterval(spawnStar, 900);
+
+    gameTimer = setInterval(() => {
+
+        gameTime--;
+
+        document.getElementById("gameTime").textContent =
+            gameTime;
+
+        if (gameTime <= 0) {
+
+            endGame();
+
+        }
+
+    }, 1000);
+}
+
+
+function spawnStar() {
+
+    const gameArea =
+        document.getElementById("gameArea");
+
+    if (!gameArea) return;
+
+    const oldStar =
+        document.querySelector(".falling-star");
+
+    if (oldStar) {
+        oldStar.remove();
+    }
+
+    const star =
+        document.createElement("button");
+
+    star.className = "falling-star";
+
+    star.textContent = "⭐";
+
+    const maxX =
+        gameArea.clientWidth - 60;
+
+    const maxY =
+        gameArea.clientHeight - 60;
+
+    star.style.left =
+        Math.random() * maxX + "px";
+
+    star.style.top =
+        Math.random() * maxY + "px";
+
+
+    star.onclick = function () {
+
+        gameScore++;
+
+        document.getElementById("score").textContent =
+            gameScore;
+
+        star.remove();
+
+        spawnStar();
+    };
+
+
+    gameArea.appendChild(star);
+}
+
+
+function endGame() {
+
+    clearInterval(gameTimer);
+    clearInterval(starTimer);
+
+    const star =
+        document.querySelector(".falling-star");
+
+    if (star) {
+        star.remove();
+    }
+
+    if (gameScore > highScore) {
+
+        highScore = gameScore;
+
+        localStorage.setItem(
+            "stargirlHighScore",
+            highScore
+        );
+    }
+
+    document.getElementById("highScore").textContent =
+        highScore;
+
+    document.getElementById("gameArea").innerHTML = `
+
+        <div class="game-over">
+
+            <div class="big-star">⭐</div>
+
+            <h2>TIME'S UP!</h2>
+
+            <p>YOUR SCORE</p>
+
+            <div class="final-score">
+                ${gameScore}
+            </div>
+
+            <p>HIGH SCORE: ${highScore}</p>
+
+            <button class="start-button"
+                onclick="startGame()">
+                PLAY AGAIN
+            </button>
+
+        </div>
+
+    `;
+}
+
+
+function closeGame() {
+
+    clearInterval(gameTimer);
+    clearInterval(starTimer);
+
+    const game =
+        document.getElementById("gameScreen");
+
+    if (game) {
+        game.remove();
+    }
+
+    document.getElementById("homeScreen").style.display =
+        "block";
+}
